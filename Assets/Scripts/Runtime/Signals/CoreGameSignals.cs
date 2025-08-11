@@ -1,4 +1,5 @@
 ﻿using System;
+using DefaultNamespace;
 using Runtime.Extensions;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,7 +8,7 @@ namespace Runtime.Signals
 {
     public class CoreGameSignals : MonoSingleton<CoreGameSignals>
     {
-        // public UnityAction<GameState> onChangeGameState;
+        public UnityAction<GameStates> onChangeGameState;
         public UnityAction<byte> onLevelInitialize = delegate { };
         public UnityAction onClearActiveLevel = delegate { };
         public UnityAction onLevelSuccessful = delegate { };

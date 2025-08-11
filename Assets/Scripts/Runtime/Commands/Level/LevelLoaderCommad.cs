@@ -1,7 +1,5 @@
-﻿using Microsoft.Win32.SafeHandles;
-using Runtime.Interfaces;
+﻿using Runtime.Interfaces;
 using Runtime.Managers;
-using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -26,11 +24,6 @@ namespace Runtime.Commands.Level
                 if (newLevel) newLevel.transform.SetParent(_levelManager.levelHolder.transform);
                 // CameraSignals.Instance.onSetCinemachineTarget?.Invoke(CameraTargetState.Player);
             };
-        }
-
-        public void Undo()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
