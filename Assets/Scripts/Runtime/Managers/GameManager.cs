@@ -1,4 +1,4 @@
-﻿using DefaultNamespace;
+﻿using Runtime.Enums;
 using Runtime.Extensions;
 using Runtime.Signals;
 using UnityEngine;

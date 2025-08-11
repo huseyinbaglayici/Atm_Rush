@@ -1,4 +1,4 @@
-﻿namespace DefaultNamespace
+﻿namespace Runtime.Enums
 {
     public enum GameStates
     {
