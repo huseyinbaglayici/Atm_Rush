@@ -17,7 +17,7 @@ namespace Runtime.Managers
 
         #region Private Variables
 
-        private LevelLoaderCommad _levelLoader;
+        private LevelLoaderCommand _levelLoader;
         private LevelDestroyerCommand _levelDestroyer;
 
         private byte _currentLevel;
@@ -33,7 +33,7 @@ namespace Runtime.Managers
 
         private void Init()
         {
-            _levelLoader = new LevelLoaderCommad(this);
+            _levelLoader = new LevelLoaderCommand(this);
             _levelDestroyer = new LevelDestroyerCommand(this);
         }
 

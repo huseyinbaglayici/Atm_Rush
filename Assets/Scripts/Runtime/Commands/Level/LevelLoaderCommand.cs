@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Runtime.Commands.Level
 {
-    public class LevelLoaderCommad : ICommand
+    public class LevelLoaderCommand : ICommand
     {
         private readonly LevelManager _levelManager;
 
-        public LevelLoaderCommad(LevelManager levelManager)
+        public LevelLoaderCommand(LevelManager levelManager)
         {
             _levelManager = levelManager;
         }
@@ -21,7 +21,7 @@ namespace Runtime.Commands.Level
             {
                 var newLevel = Object.Instantiate(resourceReq.asset.GameObject(),
                     Vector3.zero, Quaternion.identity);
-                if (newLevel) newLevel.transform.SetParent(_levelManager.levelHolder.transform);
+                if (newLevel != null) newLevel.transform.SetParent(_levelManager.levelHolder.transform);
                 // CameraSignals.Instance.onSetCinemachineTarget?.Invoke(CameraTargetState.Player);
             };
         }

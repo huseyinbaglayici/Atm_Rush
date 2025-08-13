@@ -1,5 +1,5 @@
-﻿using DefaultNamespace.Runtime.Keys;
-using Runtime.Extensions;
+﻿using Runtime.Extensions;
+using Runtime.Keys;
 using UnityEngine.Events;
 
 namespace Runtime.Signals

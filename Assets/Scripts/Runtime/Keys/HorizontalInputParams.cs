@@ -1,6 +1,6 @@
 ﻿using Unity.Mathematics;
 
-namespace DefaultNamespace.Runtime.Keys
+namespace Runtime.Keys
 {
     public struct HorizontalInputParams
     {
