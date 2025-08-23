@@ -47,8 +47,8 @@ namespace Runtime.Managers
         private void SubscribeEvents()
         {
             CoreGameSignals.Instance.onReset += OnReset;
-            CameraSignals.Instance.onSetCameraTarget += OnSetCinemachineTarget;
-            CameraSignals.Instance.onChangeCameraState += OnChangeCameraState;
+            CameraSignals.Instance.OnSetCinemachineTarget += OnSetCinemachineTarget;
+            CameraSignals.Instance.OnChangeCameraState += OnChangeCameraState;
         }
 
         private void OnSetCinemachineTarget(CameraTargetStates state)
@@ -81,8 +81,8 @@ namespace Runtime.Managers
         private void UnSubscribeEvents()
         {
             CoreGameSignals.Instance.onReset -= OnReset;
-            CameraSignals.Instance.onSetCameraTarget -= OnSetCinemachineTarget;
-            CameraSignals.Instance.onChangeCameraState -= OnChangeCameraState;
+            CameraSignals.Instance.OnSetCinemachineTarget -= OnSetCinemachineTarget;
+            CameraSignals.Instance.OnChangeCameraState -= OnChangeCameraState;
         }
 
         private void OnDisable()
@@ -92,7 +92,7 @@ namespace Runtime.Managers
 
         private void OnReset()
         {
-            CameraSignals.Instance.onChangeCameraState?.Invoke(CameraStates.Initial);
+            CameraSignals.Instance.OnChangeCameraState?.Invoke(CameraStates.Initial);
             stateDrivenCamera.Follow = null;
             stateDrivenCamera.LookAt = null;
             transform.position = _initalPosition;

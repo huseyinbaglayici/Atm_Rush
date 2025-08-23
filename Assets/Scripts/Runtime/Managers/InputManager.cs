@@ -26,6 +26,8 @@ namespace Runtime.Managers
         [Header("Data")] private InputData _data;
         [ShowInInspector] private bool _isFirstTimeTouchTaken, _isAvaibleForTouch;
 
+        private const string PlayerDataPath = "Data/CD_Input";
+
         #endregion
 
         #endregion
@@ -35,7 +37,7 @@ namespace Runtime.Managers
             _data = GetInputData();
         }
 
-        private InputData GetInputData() => Resources.Load<CD_Input>("Data/CD_Input").Data;
+        private InputData GetInputData() => Resources.Load<CD_Input>(PlayerDataPath).Data;
 
 
         private void OnEnable()

@@ -7,7 +7,7 @@ namespace Runtime.Signals
 {
     public class CameraSignals : MonoSingleton<CameraSignals>
     {
-        public UnityAction<CameraStates> onChangeCameraState = delegate { };
-        public UnityAction<CameraTargetStates> onSetCameraTarget = delegate { };
+        public UnityAction<CameraStates> OnChangeCameraState = delegate { };
+        public UnityAction<CameraTargetStates> OnSetCinemachineTarget = delegate { };
     }
 }
