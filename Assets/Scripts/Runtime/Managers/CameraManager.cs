@@ -46,7 +46,7 @@ namespace Runtime.Managers
 
         private void SubscribeEvents()
         {
-            CoreGameSignals.Instance.onReset += OnReset;
+            CoreGameSignals.Instance.OnReset += OnReset;
             CameraSignals.Instance.OnSetCinemachineTarget += OnSetCinemachineTarget;
             CameraSignals.Instance.OnChangeCameraState += OnChangeCameraState;
         }
@@ -80,7 +80,7 @@ namespace Runtime.Managers
 
         private void UnSubscribeEvents()
         {
-            CoreGameSignals.Instance.onReset -= OnReset;
+            CoreGameSignals.Instance.OnReset -= OnReset;
             CameraSignals.Instance.OnSetCinemachineTarget -= OnSetCinemachineTarget;
             CameraSignals.Instance.OnChangeCameraState -= OnChangeCameraState;
         }

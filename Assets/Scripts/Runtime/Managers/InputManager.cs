@@ -47,9 +47,9 @@ namespace Runtime.Managers
 
         private void SubscribeEvents()
         {
-            CoreGameSignals.Instance.onReset += OnReset;
-            CoreGameSignals.Instance.onPlay += OnPlay;
-            InputSignals.Instance.onChangeInputState += OnChangeInputState;
+            CoreGameSignals.Instance.OnReset += OnReset;
+            CoreGameSignals.Instance.OnPlay += OnPlay;
+            InputSignals.Instance.OnChangeInputState += OnChangeInputState;
         }
 
         private void OnPlay()
@@ -64,9 +64,9 @@ namespace Runtime.Managers
 
         private void UnSubscribeEvents()
         {
-            CoreGameSignals.Instance.onReset -= OnReset;
-            CoreGameSignals.Instance.onPlay -= OnPlay;
-            InputSignals.Instance.onChangeInputState -= OnChangeInputState;
+            CoreGameSignals.Instance.OnReset -= OnReset;
+            CoreGameSignals.Instance.OnPlay -= OnPlay;
+            InputSignals.Instance.OnChangeInputState -= OnChangeInputState;
         }
 
         private void OnDisable()
@@ -86,11 +86,11 @@ namespace Runtime.Managers
             if (Input.GetMouseButtonUp(0) && !IsPointerOverUIElement())
             {
                 _isTouching = true;
-                InputSignals.Instance.onInputTaken?.Invoke();
+                InputSignals.Instance.OnInputTaken?.Invoke();
                 if (!_isFirstTimeTouchTaken)
                 {
                     _isFirstTimeTouchTaken = true;
-                    InputSignals.Instance.onFirstTimeTouchTaken?.Invoke();
+                    InputSignals.Instance.OnFirstTimeTouchTaken?.Invoke();
                 }
 
                 _mousePosition = Input.mousePosition;
@@ -114,7 +114,7 @@ namespace Runtime.Managers
 
                         _mousePosition = Input.mousePosition;
 
-                        InputSignals.Instance.onInputDragged?.Invoke(new HorizontalInputParams()
+                        InputSignals.Instance.OnInputDragged?.Invoke(new HorizontalInputParams()
                         {
                             HorizontalInputValue = _moveVector.x,
                             HorizontalInputClampSides = _data.HorizontalInputClampStopValue

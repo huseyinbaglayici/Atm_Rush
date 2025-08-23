@@ -6,10 +6,10 @@ namespace Runtime.Signals
 {
     public class InputSignals : MonoSingleton<InputSignals>
     {
-        public UnityAction onFirstTimeTouchTaken = delegate { };
-        public UnityAction onInputTaken = delegate { };
-        public UnityAction<HorizontalInputParams> onInputDragged = delegate { };
-        public UnityAction onInputReleased = delegate { };
-        public UnityAction<bool> onChangeInputState = delegate { };
+        public UnityAction OnFirstTimeTouchTaken = delegate { };
+        public UnityAction OnInputTaken = delegate { };
+        public UnityAction<HorizontalInputParams> OnInputDragged = delegate { };
+        public UnityAction OnInputReleased = delegate { };
+        public UnityAction<bool> OnChangeInputState = delegate { };
     }
 }

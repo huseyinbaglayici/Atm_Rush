@@ -37,7 +37,7 @@ namespace Runtime.Controllers.Player
 
             if (other.CompareTag(_atm))
             {
-                CoreGameSignals.Instance.onAtmTouched?.Invoke(other.gameObject);
+                CoreGameSignals.Instance.OnAtmTouched?.Invoke(other.gameObject);
                 return;
             }
 
@@ -50,7 +50,7 @@ namespace Runtime.Controllers.Player
 
             if (other.CompareTag(_conveyor))
             {
-                CoreGameSignals.Instance.onMiniGameEntered?.Invoke();
+                CoreGameSignals.Instance.OnMiniGameEntered?.Invoke();
                 DOVirtual.DelayedCall(1.5f,
                     () => CameraSignals.Instance.OnChangeCameraState?.Invoke(CameraStates.MiniGame));
                 DOVirtual.DelayedCall(2.5f,

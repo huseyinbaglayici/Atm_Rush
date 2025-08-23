@@ -29,7 +29,7 @@ namespace Runtime.Managers
 
         private void SubscribeEvents()
         {
-            CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
+            CoreGameSignals.Instance.OnChangeGameState += OnChangeGameState;
         }
 
         private void OnChangeGameState(GameStates newState)
@@ -39,7 +39,7 @@ namespace Runtime.Managers
 
         private void UnSubscribeEvents()
         {
-            CoreGameSignals.Instance.onChangeGameState -= OnChangeGameState;
+            CoreGameSignals.Instance.OnChangeGameState -= OnChangeGameState;
         }
 
         private void OnDisable()

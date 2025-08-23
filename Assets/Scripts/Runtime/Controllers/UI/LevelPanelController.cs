@@ -29,9 +29,9 @@ namespace Runtime.Controllers.UI
 
         private void SubscribeEvents()
         {
-            UISignals.Instance.onSetNewLevelValue += OnSetNewLevelValue;
-            UISignals.Instance.onSetMoneyValue += OnSetMoneyValue;
-            UISignals.Instance.onGetMoneyValue += OnGetMoneyValue;
+            UISignals.Instance.OnSetNewLevelValue += OnSetNewLevelValue;
+            UISignals.Instance.OnSetMoneyValue += OnSetMoneyValue;
+            UISignals.Instance.OnGetMoneyValue += OnGetMoneyValue;
         }
 
         private int OnGetMoneyValue()
@@ -52,9 +52,9 @@ namespace Runtime.Controllers.UI
 
         private void UnsubscribeEvents()
         {
-            UISignals.Instance.onSetNewLevelValue -= OnSetNewLevelValue;
-            UISignals.Instance.onSetMoneyValue -= OnSetMoneyValue;
-            UISignals.Instance.onGetMoneyValue -= OnGetMoneyValue;
+            UISignals.Instance.OnSetNewLevelValue -= OnSetNewLevelValue;
+            UISignals.Instance.OnSetMoneyValue -= OnSetMoneyValue;
+            UISignals.Instance.OnGetMoneyValue -= OnGetMoneyValue;
         }
 
         private void OnDisable()

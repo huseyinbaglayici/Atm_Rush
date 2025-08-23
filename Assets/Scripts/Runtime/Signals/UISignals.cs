@@ -6,13 +6,13 @@ namespace Runtime.Signals
 {
     public class UISignals : MonoSingleton<UISignals>
     {
-        public UnityAction onSetIncomeLvlText = delegate { };
-        public UnityAction onSetStackLvlText = delegate { };
-        public UnityAction<byte> onSetNewLevelValue = delegate { };
-        public UnityAction<int> onSetMoneyValue = delegate { };
-        public Func<int> onGetMoneyValue = () => 0;
-        
-        public UnityAction onClickIncome =  delegate { };
-        public UnityAction onClickStack =  delegate { };
+        public UnityAction OnSetIncomeLvlText = delegate { };
+        public UnityAction OnSetStackLvlText = delegate { };
+        public UnityAction<byte> OnSetNewLevelValue = delegate { };
+        public UnityAction<int> OnSetMoneyValue = delegate { };
+        public Func<int> OnGetMoneyValue = () => 0;
+
+        public UnityAction OnClickIncome = delegate { };
+        public UnityAction OnClickStack = delegate { };
     }
 }

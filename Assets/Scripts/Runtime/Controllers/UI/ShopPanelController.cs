@@ -30,28 +30,28 @@ namespace Runtime.Controllers.UI
 
         private void SubscribeEvents()
         {
-            UISignals.Instance.onSetIncomeLvlText += OnSetIncomeLvLText;
-            UISignals.Instance.onSetStackLvlText += OnSetStackLvLText;
+            UISignals.Instance.OnSetIncomeLvlText += OnSetIncomeLvLText;
+            UISignals.Instance.OnSetStackLvlText += OnSetStackLvLText;
         }
 
         private void OnSetStackLvLText()
         {
-            stackLvlText.text = "Stack lvl\n" + CoreGameSignals.Instance.onGetStackLevel();
-            stackValue.text = (Mathf.Pow(2, Mathf.Clamp(CoreGameSignals.Instance.onGetStackLevel(), 0, 10)) * 100)
+            stackLvlText.text = "Stack lvl\n" + CoreGameSignals.Instance.OnGetStackLevel();
+            stackValue.text = (Mathf.Pow(2, Mathf.Clamp(CoreGameSignals.Instance.OnGetStackLevel(), 0, 10)) * 100)
                 .ToString();
         }
 
         private void OnSetIncomeLvLText()
         {
-            incomeLvlText.text = "Income lvl\n" + CoreGameSignals.Instance.onGetIncomeLevel();
-            incomeValue.text = (Mathf.Pow(2, Mathf.Clamp(CoreGameSignals.Instance.onGetIncomeLevel(), 0, 10)) * 100)
+            incomeLvlText.text = "Income lvl\n" + CoreGameSignals.Instance.OnGetIncomeLevel();
+            incomeValue.text = (Mathf.Pow(2, Mathf.Clamp(CoreGameSignals.Instance.OnGetIncomeLevel(), 0, 10)) * 100)
                 .ToString();
         }
 
         private void UnSubscribeEvents()
         {
-            UISignals.Instance.onSetIncomeLvlText -= OnSetIncomeLvLText;
-            UISignals.Instance.onSetStackLvlText -= OnSetStackLvLText;
+            UISignals.Instance.OnSetIncomeLvlText -= OnSetIncomeLvLText;
+            UISignals.Instance.OnSetStackLvlText -= OnSetStackLvLText;
         }
 
         private void OnDisable()
@@ -74,8 +74,8 @@ namespace Runtime.Controllers.UI
 
         private void ChangesIncomeInteractable()
         {
-            if (int.Parse(UISignals.Instance.onGetMoneyValue?.Invoke().ToString()!) < int.Parse(incomeValue.text) ||
-                CoreGameSignals.Instance.onGetIncomeLevel() >= 30)
+            if (int.Parse(UISignals.Instance.OnGetMoneyValue?.Invoke().ToString()!) < int.Parse(incomeValue.text) ||
+                CoreGameSignals.Instance.OnGetIncomeLevel() >= 30)
             {
                 incomeLvlButton.interactable = false;
             }
@@ -88,8 +88,8 @@ namespace Runtime.Controllers.UI
 
         private void ChangesStackInteractable()
         {
-            if (int.Parse(UISignals.Instance.onGetMoneyValue?.Invoke().ToString()!) < int.Parse(stackValue.text) ||
-                CoreGameSignals.Instance.onGetStackLevel() >= 15)
+            if (int.Parse(UISignals.Instance.OnGetMoneyValue?.Invoke().ToString()!) < int.Parse(stackValue.text) ||
+                CoreGameSignals.Instance.OnGetStackLevel() >= 15)
             {
                 stackLvlButton.interactable = false;
             }

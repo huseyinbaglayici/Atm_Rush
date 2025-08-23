@@ -43,16 +43,16 @@ namespace Runtime.Managers
             SubscribeEvents();
 
             _currentLevel = GetLevelID();
-            CoreGameSignals.Instance.onLevelInitialize?.Invoke(_currentLevel);
+            CoreGameSignals.Instance.OnLevelInitialize?.Invoke(_currentLevel);
         }
 
         private void SubscribeEvents()
         {
-            CoreGameSignals.Instance.onLevelInitialize += _levelLoader.Execute;
-            CoreGameSignals.Instance.onClearActiveLevel += _levelDestroyer.Execute;
-            CoreGameSignals.Instance.onGetLevelID += GetLevelID;
-            CoreGameSignals.Instance.onNextLevel += OnNextLevel;
-            CoreGameSignals.Instance.onRestartLevel += OnRestartLevel;
+            CoreGameSignals.Instance.OnLevelInitialize += _levelLoader.Execute;
+            CoreGameSignals.Instance.OnClearActiveLevel += _levelDestroyer.Execute;
+            CoreGameSignals.Instance.OnGetLevelID += GetLevelID;
+            CoreGameSignals.Instance.OnNextLevel += OnNextLevel;
+            CoreGameSignals.Instance.OnRestartLevel += OnRestartLevel;
         }
 
         private void OnDisable()
@@ -62,11 +62,11 @@ namespace Runtime.Managers
 
         private void UnsubscribeEvent()
         {
-            CoreGameSignals.Instance.onLevelInitialize -= _levelLoader.Execute;
-            CoreGameSignals.Instance.onClearActiveLevel -= _levelDestroyer.Execute;
-            CoreGameSignals.Instance.onGetLevelID -= GetLevelID;
-            CoreGameSignals.Instance.onNextLevel -= OnNextLevel;
-            CoreGameSignals.Instance.onRestartLevel -= OnRestartLevel;
+            CoreGameSignals.Instance.OnLevelInitialize -= _levelLoader.Execute;
+            CoreGameSignals.Instance.OnClearActiveLevel -= _levelDestroyer.Execute;
+            CoreGameSignals.Instance.OnGetLevelID -= GetLevelID;
+            CoreGameSignals.Instance.OnNextLevel -= OnNextLevel;
+            CoreGameSignals.Instance.OnRestartLevel -= OnRestartLevel;
         }
 
         private byte GetLevelID()
@@ -79,15 +79,15 @@ namespace Runtime.Managers
         {
             _currentLevel++;
             // SaveSignals.Instance.onSaveGameData?.Invoke();
-            CoreGameSignals.Instance.onClearActiveLevel?.Invoke();
-            CoreGameSignals.Instance.onLevelInitialize?.Invoke(GetLevelID());
+            CoreGameSignals.Instance.OnClearActiveLevel?.Invoke();
+            CoreGameSignals.Instance.OnLevelInitialize?.Invoke(GetLevelID());
         }
 
         private void OnRestartLevel()
         {
             // SaveSignals.Instance.onSaveGameData?.Invoke();
-            CoreGameSignals.Instance.onClearActiveLevel?.Invoke();
-            CoreGameSignals.Instance.onLevelInitialize?.Invoke(GetLevelID());
+            CoreGameSignals.Instance.OnClearActiveLevel?.Invoke();
+            CoreGameSignals.Instance.OnLevelInitialize?.Invoke(GetLevelID());
         }
     }
 }

@@ -58,17 +58,17 @@ namespace Runtime.Managers
 
         private void SubscribeEvents()
         {
-            InputSignals.Instance.onInputTaken += () => PlayerSignals.Instance.OnMoveConditionChanged?.Invoke(true);
-            InputSignals.Instance.onInputReleased += () => PlayerSignals.Instance.OnMoveConditionChanged?.Invoke(false);
-            InputSignals.Instance.onInputDragged += OnInputDragged;
-            CoreGameSignals.Instance.onPlay += OnPlay;
-            CoreGameSignals.Instance.onLevelSuccessful +=
+            InputSignals.Instance.OnInputTaken += () => PlayerSignals.Instance.OnMoveConditionChanged?.Invoke(true);
+            InputSignals.Instance.OnInputReleased += () => PlayerSignals.Instance.OnMoveConditionChanged?.Invoke(false);
+            InputSignals.Instance.OnInputDragged += OnInputDragged;
+            CoreGameSignals.Instance.OnPlay += OnPlay;
+            CoreGameSignals.Instance.OnLevelSuccessful +=
                 () => PlayerSignals.Instance.OnPlayConditionChanged?.Invoke(true);
-            CoreGameSignals.Instance.onLevelFailed +=
+            CoreGameSignals.Instance.OnLevelFailed +=
                 () => PlayerSignals.Instance.OnPlayConditionChanged?.Invoke(false);
 
             PlayerSignals.Instance.OnSetTotalScore += OnSetTotalScore;
-            CoreGameSignals.Instance.onMiniGameEntered += OnMiniGameEntered;
+            CoreGameSignals.Instance.OnMiniGameEntered += OnMiniGameEntered;
         }
 
         private void OnPlay()
@@ -104,18 +104,18 @@ namespace Runtime.Managers
 
         private void UnSubscribeEvents()
         {
-            InputSignals.Instance.onInputTaken -= () => PlayerSignals.Instance.OnMoveConditionChanged?.Invoke(true);
-            InputSignals.Instance.onInputReleased -= () => PlayerSignals.Instance.OnMoveConditionChanged?.Invoke(false);
-            InputSignals.Instance.onInputDragged -= OnInputDragged;
-            CoreGameSignals.Instance.onPlay -= OnPlay;
-            CoreGameSignals.Instance.onLevelSuccessful -=
+            InputSignals.Instance.OnInputTaken -= () => PlayerSignals.Instance.OnMoveConditionChanged?.Invoke(true);
+            InputSignals.Instance.OnInputReleased -= () => PlayerSignals.Instance.OnMoveConditionChanged?.Invoke(false);
+            InputSignals.Instance.OnInputDragged -= OnInputDragged;
+            CoreGameSignals.Instance.OnPlay -= OnPlay;
+            CoreGameSignals.Instance.OnLevelSuccessful -=
                 () => PlayerSignals.Instance.OnPlayConditionChanged?.Invoke(true);
-            CoreGameSignals.Instance.onLevelFailed -=
+            CoreGameSignals.Instance.OnLevelFailed -=
                 () => PlayerSignals.Instance.OnPlayConditionChanged?.Invoke(false);
-            CoreGameSignals.Instance.onReset -= OnReset;
+            CoreGameSignals.Instance.OnReset -= OnReset;
 
             PlayerSignals.Instance.OnSetTotalScore -= OnSetTotalScore;
-            CoreGameSignals.Instance.onMiniGameEntered -= OnMiniGameEntered;
+            CoreGameSignals.Instance.OnMiniGameEntered -= OnMiniGameEntered;
         }
 
         private void OnDisable()
@@ -135,7 +135,7 @@ namespace Runtime.Managers
             PlayerSignals.Instance.OnChangePlayerAnimationState?.Invoke(PlayerAnimationStates.Idle);
             yield return new WaitForSeconds(2f);
             gameObject.SetActive(false);
-            CoreGameSignals.Instance.onMiniGameStart?.Invoke();
+            CoreGameSignals.Instance.OnMiniGameStart?.Invoke();
         }
     }
 }
