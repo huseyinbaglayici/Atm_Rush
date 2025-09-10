@@ -57,8 +57,8 @@ namespace Runtime.Managers
             {
                 case CameraTargetStates.Player:
                 {
-                    // var playerManager = FindObjectOfType<PlayerManager>.transform;
-                    // stateDrivenCamera.follow = playerManager;
+                     var playerManager = FindObjectOfType<PlayerManager>().transform;
+                     stateDrivenCamera.Follow = playerManager;
                 }
                     break;
                 case CameraTargetStates.FakePlayer:

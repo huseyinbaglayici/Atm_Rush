@@ -130,6 +130,7 @@ namespace Runtime.Managers
             Vector2 pos = new Vector2(position.x, position.y);
             // StackSignals.Instance.OnStackFollowPlayer?.Invoke(pos);
         }
+        // ReSharper disable Unity.PerformanceAnalysis
         private IEnumerator WaitForFinal()
         {
             PlayerSignals.Instance.OnChangePlayerAnimationState?.Invoke(PlayerAnimationStates.Idle);
