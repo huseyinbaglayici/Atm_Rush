@@ -11,7 +11,7 @@ namespace Runtime.Data.ValueObject
         [Range(0, 0.2f)] public float StackAnimDuration = 0.12f;
         [Range(1f, 3f)] public float StackScaleValue = 1f;
         [Range(1, 10f)] public float JumpForce = 7f;
-        public float JumpItemClampX = 5f;
+        public float JumpItemsClampX = 5f;
 
     }
 }
