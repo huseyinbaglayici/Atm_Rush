@@ -11,7 +11,7 @@ namespace Runtime.Commands.Stack
         private List<GameObject> _collectableStack;
         private Transform _levelHolder;
 
-        public StackJumperCommand(StackData data, List<GameObject> collectableStack)
+        public StackJumperCommand(StackData data, ref List<GameObject> collectableStack)
         {
             _data = data;
             _collectableStack = collectableStack;
