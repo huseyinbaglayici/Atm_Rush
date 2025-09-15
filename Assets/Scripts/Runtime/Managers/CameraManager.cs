@@ -59,6 +59,7 @@ namespace Runtime.Managers
                 {
                      var playerManager = FindObjectOfType<PlayerManager>().transform;
                      stateDrivenCamera.Follow = playerManager;
+                     Debug.LogWarning("Cinemachine target changed to player");
                 }
                     break;
                 case CameraTargetStates.FakePlayer:

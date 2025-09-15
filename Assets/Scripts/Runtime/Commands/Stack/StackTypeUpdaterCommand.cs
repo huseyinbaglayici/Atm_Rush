@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Runtime.Managers;
 using Runtime.Signals;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ namespace Runtime.Commands.Stack
             _totalListScore = 0;
             foreach (var items in _collectableStack)
             {
-                // _totalListScore += items.GetComponent<CollectableManager>().GetCurrentValue() + 1;
+                _totalListScore += items.GetComponent<CollectableManager>().GetCurrentValue() + 1;
             }
 
             ScoreSignals.Instance.OnSetScore?.Invoke(_totalListScore);

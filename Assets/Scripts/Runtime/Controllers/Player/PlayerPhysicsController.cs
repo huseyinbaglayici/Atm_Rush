@@ -44,7 +44,7 @@ namespace Runtime.Controllers.Player
             if (other.CompareTag(_collectable))
             {
                 other.tag = "Collected";
-                // StackSignals.Instance.OnInteractionCollectable?.Invoke(other.transform.parent.gameObject);
+                StackSignals.Instance.OnInteractionCollectable?.Invoke(other.transform.parent.gameObject);
                 return;
             }
 

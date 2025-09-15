@@ -85,39 +85,48 @@ namespace Runtime.Managers
 
             if (Input.GetMouseButtonUp(0) && !IsPointerOverUIElement())
             {
-                _isTouching = true;
-                InputSignals.Instance.OnInputTaken?.Invoke();
-                if (!_isFirstTimeTouchTaken)
-                {
-                    _isFirstTimeTouchTaken = true;
-                    InputSignals.Instance.OnFirstTimeTouchTaken?.Invoke();
-                }
-
-                _mousePosition = Input.mousePosition;
+                _isTouching = false;
+                InputSignals.Instance.OnInputReleased?.Invoke();
             }
+
+            if (Input.GetMouseButtonDown(0) && !IsPointerOverUIElement())
+
+                if (Input.GetMouseButton(0) && !IsPointerOverUIElement())
+                {
+                    _isTouching = true;
+                    InputSignals.Instance.OnInputTaken?.Invoke();
+                    if (!_isFirstTimeTouchTaken)
+                    {
+                        _isFirstTimeTouchTaken = true;
+                        InputSignals.Instance.OnFirstTimeTouchTaken?.Invoke();
+                    }
+
+                    _mousePosition = Input.mousePosition;
+                }
 
             if (Input.GetMouseButton(0) && !IsPointerOverUIElement())
             {
                 if (_isTouching)
                 {
-                    if (_mousePosition.HasValue)
+                    if (_mousePosition != null)
                     {
                         Vector2 mouseDeltaPos = (Vector2)Input.mousePosition - _mousePosition.Value;
 
                         if (mouseDeltaPos.x > _data.HorizontalInputSpeed)
                             _moveVector.x = _data.HorizontalInputSpeed / 10f * mouseDeltaPos.x;
                         else if (mouseDeltaPos.x < -_data.HorizontalInputSpeed)
-                            _moveVector.x = -_data.HorizontalInputSpeed / 10f * -mouseDeltaPos.x;
+                            _moveVector.x = _data.HorizontalInputSpeed / 10f * -mouseDeltaPos.x;
+
                         else
-                            _moveVector.x = Mathf.SmoothDamp(_moveVector.x, 0f, ref _currentVelocity,
+                            _moveVector.x = Mathf.SmoothDamp(_moveVector.x, 0, ref _currentVelocity,
                                 _data.HorizontalInputClampStopValue);
 
                         _mousePosition = Input.mousePosition;
-
+                        
                         InputSignals.Instance.OnInputDragged?.Invoke(new HorizontalInputParams()
                         {
-                            HorizontalInputValue = _moveVector.x,
-                            HorizontalInputClampSides = _data.HorizontalInputClampStopValue
+                          HorizontalInputValue  =  _moveVector.x,
+                          HorizontalInputClampSides = _data.HorizontalInputClampNegativeSides,
                         });
                     }
                 }

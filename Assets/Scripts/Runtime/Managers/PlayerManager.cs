@@ -128,8 +128,9 @@ namespace Runtime.Managers
         {
             var position = transform.position;
             Vector2 pos = new Vector2(position.x, position.y);
-            // StackSignals.Instance.OnStackFollowPlayer?.Invoke(pos);
+            StackSignals.Instance.OnStackFollowPlayer?.Invoke(pos);
         }
+
         // ReSharper disable Unity.PerformanceAnalysis
         private IEnumerator WaitForFinal()
         {
