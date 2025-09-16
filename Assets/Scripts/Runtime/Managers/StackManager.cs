@@ -33,7 +33,7 @@ namespace Runtime.Managers
 
         #region private variables
 
-        [ShowInInspector] private StackData _data;
+        private StackData _data;
         private List<GameObject> _collectableStack = new List<GameObject>();
 
         private StackmMoverCommand _stackMoverCommand;
