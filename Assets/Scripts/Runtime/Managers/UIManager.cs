@@ -41,7 +41,7 @@ namespace Runtime.Managers
             CoreGameSignals.Instance.OnPlay?.Invoke();
             CoreUISignals.Instance.OnClosePanel?.Invoke(0);
             CoreUISignals.Instance.OnClosePanel?.Invoke(2);
-            //CameraSignals.Instance.onChangeCameraState?.Invoke(CameraStates.Follow);
+            CameraSignals.Instance.OnChangeCameraState?.Invoke(CameraStates.Follow);
         }
 
         private void OnOpenWinPanel()

@@ -22,7 +22,7 @@ namespace Runtime.Commands.Stack
 
         private void StackItemsLerpMove(List<GameObject> collectableStack)
         {
-            for (int i = 0; i < collectableStack.Count; i++)
+            for (int i = 1; i < collectableStack.Count; i++)
             {
                 Vector3 pos = collectableStack[i].transform.localPosition;
                 pos.x = collectableStack[i - 1].transform.localPosition.x;

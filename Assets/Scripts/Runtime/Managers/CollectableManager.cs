@@ -31,12 +31,12 @@ namespace Runtime.Managers
 
         private void Awake()
         {
-            _data = GetCollectableData;
+            _data = GetCollectableData();
             SendDataToControllers();
         }
 
 
-        private CollectableData GetCollectableData => Resources.Load<CD_Collectable>(_collectableDataPath).Data;
+        private CollectableData GetCollectableData() => Resources.Load<CD_Collectable>(_collectableDataPath).Data;
 
 
         private void SendDataToControllers()
@@ -46,7 +46,7 @@ namespace Runtime.Managers
 
         internal void CollectableUpgrade(int value)
         {
-            if(_currentValue < 2) _currentValue++;
+            if (_currentValue < 2) _currentValue++;
             meshController.UpgradeCollectableVisual(_currentValue);
             StackSignals.Instance.OnUpdateType?.Invoke();
         }

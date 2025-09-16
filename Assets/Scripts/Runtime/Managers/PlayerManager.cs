@@ -124,7 +124,7 @@ namespace Runtime.Managers
         }
 
 
-        public void SetStackPosition()
+        internal void SetStackPosition()
         {
             var position = transform.position;
             Vector2 pos = new Vector2(position.x, position.z);

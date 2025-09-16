@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 33743e7549d453f4f81d486f5d1fbae0, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1522,9 +1522,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1166875943}
-  - component: {fileID: 1166875944}
   - component: {fileID: 1166875946}
   - component: {fileID: 1166875945}
+  - component: {fileID: 1166875944}
   m_Layer: 0
   m_Name: UIRoot
   m_TagString: Untagged
@@ -1902,7 +1902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelHolder: {fileID: 1847017326}
-  totalLevelCount: 3
+  totalLevelCount: 6
 --- !u!1 &1539886912
 GameObject:
   m_ObjectHideFlags: 3
