@@ -121,6 +121,9 @@ namespace Runtime.Controllers.Player
 
         public void OnReset()
         {
+            Stop();
+            _isReadyToMove = false;
+            _isReadyToPlay = false;
         }
     }
 }
