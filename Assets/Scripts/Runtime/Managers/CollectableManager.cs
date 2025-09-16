@@ -69,7 +69,7 @@ namespace Runtime.Managers
 
         public void InteractionWithObstacle(GameObject collectableGameObject)
         {
-            StackSignals.Instance.OnInteractionAtm?.Invoke(collectableGameObject);
+            StackSignals.Instance.OnInteractionObstacle?.Invoke(collectableGameObject);
         }
 
         public void InteractionWithConveyor()

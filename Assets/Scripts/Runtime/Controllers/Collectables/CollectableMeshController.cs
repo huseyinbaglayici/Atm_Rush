@@ -28,9 +28,9 @@ namespace Runtime.Controllers.Collectables
             ActivateMeshVisuals();
         }
 
-        internal void SetMeshData(CollectableMeshData dataMeshData)
+        internal void SetMeshData(CollectableMeshData meshData)
         {
-            _data = dataMeshData;
+            _data = meshData;
         }
 
         private void ActivateMeshVisuals()

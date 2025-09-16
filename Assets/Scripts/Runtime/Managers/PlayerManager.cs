@@ -127,11 +127,10 @@ namespace Runtime.Managers
         public void SetStackPosition()
         {
             var position = transform.position;
-            Vector2 pos = new Vector2(position.x, position.y);
+            Vector2 pos = new Vector2(position.x, position.z);
             StackSignals.Instance.OnStackFollowPlayer?.Invoke(pos);
         }
 
-        // ReSharper disable Unity.PerformanceAnalysis
         private IEnumerator WaitForFinal()
         {
             PlayerSignals.Instance.OnChangePlayerAnimationState?.Invoke(PlayerAnimationStates.Idle);

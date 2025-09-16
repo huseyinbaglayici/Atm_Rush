@@ -37,7 +37,7 @@ namespace Runtime.Controllers.Collectables
 
             if (other.CompareTag(_gate) && CompareTag(_collected))
             {
-                manager.InteractionWithCollectable(other.transform.parent.gameObject);
+                manager.CollectableUpgrade(manager.GetCurrentValue());
             }
 
             if (other.CompareTag(_atm) && CompareTag(_collected))
