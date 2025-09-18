@@ -78,14 +78,14 @@ namespace Runtime.Managers
         private void OnNextLevel()
         {
             _currentLevel++;
-            // SaveSignals.Instance.onSaveGameData?.Invoke();
+            SaveSignals.Instance.OnSaveGameData?.Invoke();
             CoreGameSignals.Instance.OnClearActiveLevel?.Invoke();
             CoreGameSignals.Instance.OnLevelInitialize?.Invoke(GetLevelID());
         }
 
         private void OnRestartLevel()
         {
-            // SaveSignals.Instance.onSaveGameData?.Invoke();
+            SaveSignals.Instance.OnSaveGameData?.Invoke();
             CoreGameSignals.Instance.OnClearActiveLevel?.Invoke();
             CoreGameSignals.Instance.OnLevelInitialize?.Invoke(GetLevelID());
         }

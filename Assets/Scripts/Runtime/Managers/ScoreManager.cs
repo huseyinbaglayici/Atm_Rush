@@ -102,7 +102,7 @@ namespace Runtime.Managers
 
         private void RefreshMoney()
         {
-            _money = (int)(_scoreCache * ScoreSignals.Instance.OnGetMultiplier());
+            _money += (int)(_scoreCache * ScoreSignals.Instance.OnGetMultiplier());
             UISignals.Instance.OnSetMoneyValue?.Invoke(_money);
         }
 
