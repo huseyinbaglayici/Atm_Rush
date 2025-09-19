@@ -16,6 +16,7 @@ namespace Runtime.Managers
         [SerializeField] private GameObject wallObject;
         [SerializeField] private GameObject fakeMoneyObject;
         [SerializeField] private Transform fakePlayer;
+        [SerializeField] private Transform minigameTransform;
         [SerializeField] private Material mat;
 
         [SerializeField] private short wallCount, fakeMoneyCount;
@@ -106,7 +107,8 @@ namespace Runtime.Managers
 
         private void Init()
         {
-            _initialPos = fakePlayer.localPosition;
+            _initialPos = minigameTransform.localPosition;
+            Debug.LogWarning("initial pos -->" + _initialPos);
         }
 
         private void SpawnWallObjects()
@@ -128,12 +130,14 @@ namespace Runtime.Managers
             }
         }
 
+        //TO-DO FAKE PLAYER 560 KORDINATINA GIDIYOR! FIXLE >
         private void ResetWalls()
         {
             for (int i = 1; i < wallCount; i++)
             {
+                var wall = transform.GetChild(i);
                 transform.GetChild(i).GetComponent<Renderer>().material = mat;
-                transform.GetChild(i).transform.position = Vector3.zero;
+                wall.localPosition = new Vector3(0, i * 10, 0);
             }
         }
 

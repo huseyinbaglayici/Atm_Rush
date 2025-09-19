@@ -101,7 +101,7 @@ namespace Runtime.Managers
         {
             ScoreSignals.Instance.OnSetAtmScore?.Invoke((int)collectableGameObject.GetComponent<CollectableManager>()
                 .GetCurrentValue() + 1);
-            if (!LastCheck)
+            if (LastCheck == false)
             {
                 _itemRemoverOnStackOnStackCommand.Execute(collectableGameObject);
             }
