@@ -30,14 +30,14 @@ namespace Runtime.Controllers.UI
         {
             CoreUISignals.Instance.OnOpenPanel += OnOpenPanel;
             CoreUISignals.Instance.OnClosePanel += OnClosePanel;
-            CoreUISignals.Instance.OnCloseAllPanel += OnCloseAllPanels;
+            CoreUISignals.Instance.OnCloseAllPanels += OnCloseAllPanels;
         }
 
         private void UnSubscribeEvents()
         {
             CoreUISignals.Instance.OnOpenPanel -= OnOpenPanel;
             CoreUISignals.Instance.OnClosePanel -= OnClosePanel;
-            CoreUISignals.Instance.OnCloseAllPanel -= OnCloseAllPanels;
+            CoreUISignals.Instance.OnCloseAllPanels -= OnCloseAllPanels;
         }
 
         private void OnDisable()

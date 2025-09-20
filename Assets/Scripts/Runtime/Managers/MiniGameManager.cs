@@ -108,7 +108,7 @@ namespace Runtime.Managers
         private void Init()
         {
             _initialPos = minigameTransform.localPosition;
-            Debug.LogWarning("initial pos -->" + _initialPos);
+            //Debug.LogWarning("initial pos -->" + _initialPos);
         }
 
         private void SpawnWallObjects()

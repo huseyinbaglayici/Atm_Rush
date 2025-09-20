@@ -71,8 +71,7 @@ namespace Runtime.Managers
 
         private byte GetLevelID()
         {
-            if (!ES3.FileExists()) return 0;
-            return (byte)(ES3.KeyExists("Level") ? ES3.Load<int>("Level") % totalLevelCount : 0);
+            return _currentLevel;
         }
 
         private void OnNextLevel()
@@ -80,7 +79,8 @@ namespace Runtime.Managers
             _currentLevel++;
             SaveSignals.Instance.OnSaveGameData?.Invoke();
             CoreGameSignals.Instance.OnClearActiveLevel?.Invoke();
-            CoreGameSignals.Instance.OnLevelInitialize?.Invoke(GetLevelID());
+            byte levelIndex = (byte)(_currentLevel % totalLevelCount);
+            CoreGameSignals.Instance.OnLevelInitialize?.Invoke(levelIndex);
         }
 
         private void OnRestartLevel()
