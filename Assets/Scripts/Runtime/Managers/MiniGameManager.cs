@@ -107,7 +107,7 @@ namespace Runtime.Managers
 
         private void Init()
         {
-            _initialPos = minigameTransform.localPosition;
+            _initialPos = fakePlayer.localPosition;
             //Debug.LogWarning("initial pos -->" + _initialPos);
         }
 
@@ -130,14 +130,13 @@ namespace Runtime.Managers
             }
         }
 
-        //TO-DO FAKE PLAYER 560 KORDINATINA GIDIYOR! FIXLE >
         private void ResetWalls()
         {
             for (int i = 1; i < wallCount; i++)
             {
                 var wall = transform.GetChild(i);
                 transform.GetChild(i).GetComponent<Renderer>().material = mat;
-                wall.localPosition = new Vector3(0, i * 10, 0);
+                wall.localPosition = new Vector3(0, (i - 1) * 10, 0);
             }
         }
 

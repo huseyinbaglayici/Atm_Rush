@@ -55,7 +55,6 @@ namespace Runtime.Managers
 
         private void OnSaveGame(SaveGameDataParams saveDataParams)
         {
-            Debug.LogWarning("Saving game data ---> " + saveDataParams.Level);
             ES3.Save(_level, saveDataParams.Level);
             ES3.Save(_money, saveDataParams.Money);
             ES3.Save(_incomeLevel, saveDataParams.IncomeLevel);

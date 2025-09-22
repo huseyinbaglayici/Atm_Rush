@@ -32,7 +32,7 @@ namespace Runtime.Managers
         private void SubscribeEvents()
         {
             ScoreSignals.Instance.OnSendMoney += OnSendMoney;
-            ScoreSignals.Instance.OnGetMoney += () => _money;
+            ScoreSignals.Instance.OnGetMoney += OnGetMoney;
             ScoreSignals.Instance.OnSetScore += OnSetScore;
             ScoreSignals.Instance.OnSetAtmScore += OnSetAtmScore;
             CoreGameSignals.Instance.OnMiniGameStart +=
@@ -40,8 +40,12 @@ namespace Runtime.Managers
             CoreGameSignals.Instance.OnReset += OnReset;
             CoreGameSignals.Instance.OnLevelSuccessful += RefreshMoney;
             CoreGameSignals.Instance.OnLevelFailed += RefreshMoney;
+            CoreGameSignals.Instance.OnRestartLevel += OnRestartLevel;
+            CoreGameSignals.Instance.OnNextLevel += OnNextLevel;
             UISignals.Instance.OnClickIncome += OnSetValueMultiplier;
         }
+
+        private int OnGetMoney() => _money;
 
 
         private void OnSendMoney(int value)
@@ -70,7 +74,7 @@ namespace Runtime.Managers
         private void UnSubscribeEvents()
         {
             ScoreSignals.Instance.OnSendMoney -= OnSendMoney;
-            ScoreSignals.Instance.OnGetMoney -= () => _money;
+            ScoreSignals.Instance.OnGetMoney += OnGetMoney;
             ScoreSignals.Instance.OnSetScore -= OnSetScore;
             ScoreSignals.Instance.OnSetAtmScore -= OnSetAtmScore;
             CoreGameSignals.Instance.OnMiniGameStart -=
@@ -78,6 +82,8 @@ namespace Runtime.Managers
             CoreGameSignals.Instance.OnReset -= OnReset;
             CoreGameSignals.Instance.OnLevelSuccessful -= RefreshMoney;
             CoreGameSignals.Instance.OnLevelFailed -= RefreshMoney;
+            CoreGameSignals.Instance.OnRestartLevel -= OnRestartLevel;
+            CoreGameSignals.Instance.OnNextLevel -= OnNextLevel;
             UISignals.Instance.OnClickIncome -= OnSetValueMultiplier;
         }
 
@@ -97,13 +103,24 @@ namespace Runtime.Managers
         private int GetMoneyValue()
         {
             if (!ES3.FileExists()) return 0;
-            return (int)(ES3.KeyExists("Money") ? ES3.Load<int>("Money") : 0);
+            return ES3.KeyExists("Money") ? ES3.Load<int>("Money") : 0;
         }
 
         private void RefreshMoney()
         {
             _money += (int)(_scoreCache * ScoreSignals.Instance.OnGetMultiplier());
+            _money = Mathf.Clamp(_money, 0, _money);
             UISignals.Instance.OnSetMoneyValue?.Invoke(_money);
+        }
+
+        private void OnRestartLevel()
+        {
+            UISignals.Instance.OnSetMoneyValue?.Invoke(GetMoneyValue());
+        }
+
+        private void OnNextLevel()
+        {
+            RefreshMoney();
         }
 
         private void OnReset()

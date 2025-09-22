@@ -63,6 +63,7 @@ namespace Runtime.Managers
         public void OnRestartLevel()
         {
             CoreGameSignals.Instance.OnRestartLevel?.Invoke();
+            CameraSignals.Instance.OnChangeCameraState?.Invoke(CameraStates.Initial);
             // CoreGameSignals.Instance.OnReset?.Invoke();
         }
 

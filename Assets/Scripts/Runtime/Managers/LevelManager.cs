@@ -71,7 +71,7 @@ namespace Runtime.Managers
 
         private byte GetLevelID()
         {
-            return _currentLevel;
+            return (byte)(_currentLevel % totalLevelCount);
         }
 
         private void OnNextLevel()
@@ -79,13 +79,11 @@ namespace Runtime.Managers
             _currentLevel++;
             SaveSignals.Instance.OnSaveGameData?.Invoke();
             CoreGameSignals.Instance.OnClearActiveLevel?.Invoke();
-            byte levelIndex = (byte)(_currentLevel % totalLevelCount);
-            CoreGameSignals.Instance.OnLevelInitialize?.Invoke(levelIndex);
+            CoreGameSignals.Instance.OnLevelInitialize?.Invoke(GetLevelID());
         }
 
         private void OnRestartLevel()
         {
-            SaveSignals.Instance.OnSaveGameData?.Invoke();
             CoreGameSignals.Instance.OnClearActiveLevel?.Invoke();
             CoreGameSignals.Instance.OnLevelInitialize?.Invoke(GetLevelID());
         }

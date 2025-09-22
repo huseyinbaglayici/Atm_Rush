@@ -13,7 +13,7 @@ namespace Runtime.Managers
 
         public FeatureManager()
         {
-            _onClickIncomeCommand = new OnClickIncomeCommand(this, ref _newPriceTag, ref _incomeLevel);
+            _onClickIncomeCommand = new OnClickIncomeCommand(this);
             _onClickStackCommand = new OnClickStackCommand(this, ref _newPriceTag, ref _stackLevel);
         }
 
@@ -45,7 +45,7 @@ namespace Runtime.Managers
 
         private void Subscription()
         {
-            UISignals.Instance.OnClickIncome += _onClickIncomeCommand.Execute;
+            UISignals.Instance.OnClickIncome += () => _onClickIncomeCommand.Execute(ref _newPriceTag, ref _incomeLevel);
             UISignals.Instance.OnClickStack += _onClickStackCommand.Execute;
             CoreGameSignals.Instance.OnGetIncomeLevel += OnGetIncomeLevel;
             CoreGameSignals.Instance.OnGetStackLevel += OnGetStackLevel;
@@ -56,7 +56,7 @@ namespace Runtime.Managers
 
         private void UnSubscription()
         {
-            UISignals.Instance.OnClickIncome -= _onClickIncomeCommand.Execute;
+            UISignals.Instance.OnClickIncome -= () => _onClickIncomeCommand.Execute(ref _newPriceTag, ref _incomeLevel);
             UISignals.Instance.OnClickStack -= _onClickStackCommand.Execute;
             CoreGameSignals.Instance.OnGetIncomeLevel -= OnGetIncomeLevel;
             CoreGameSignals.Instance.OnGetStackLevel -= OnGetStackLevel;
