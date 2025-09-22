@@ -18,9 +18,14 @@ namespace Runtime.Commands.Stack
         public void Execute()
         {
             _totalListScore = 0;
-            foreach (var items in _collectableStack)
+            foreach (var item in _collectableStack)
             {
-                _totalListScore += items.GetComponent<CollectableManager>().GetCurrentValue() + 1;
+                if (item == null) continue;
+                var cm = item.GetComponent<CollectableManager>();
+                if (cm != null)
+                {
+                    _totalListScore += cm.GetCurrentValue() + 1;
+                }
             }
 
             ScoreSignals.Instance.OnSetScore?.Invoke(_totalListScore);

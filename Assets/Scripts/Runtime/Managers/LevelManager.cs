@@ -42,7 +42,8 @@ namespace Runtime.Managers
         {
             SubscribeEvents();
 
-            _currentLevel = GetLevelID();
+            _currentLevel = (byte)(ES3.KeyExists("Level") ? ES3.Load<int>("Level") : 0);
+
             CoreGameSignals.Instance.OnLevelInitialize?.Invoke(_currentLevel);
         }
 
@@ -86,6 +87,7 @@ namespace Runtime.Managers
         {
             CoreGameSignals.Instance.OnClearActiveLevel?.Invoke();
             CoreGameSignals.Instance.OnLevelInitialize?.Invoke(GetLevelID());
+            SaveSignals.Instance.OnSaveGameData?.Invoke();
         }
     }
 }

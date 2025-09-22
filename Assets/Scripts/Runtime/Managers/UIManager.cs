@@ -9,7 +9,6 @@ namespace Runtime.Managers
         private void OnEnable()
         {
             SubscribeEvents();
-
             OpenStartPanel();
         }
 
@@ -34,6 +33,7 @@ namespace Runtime.Managers
             CoreUISignals.Instance.OnOpenPanel?.Invoke(UIPanelTypes.Level, 1);
             CoreUISignals.Instance.OnOpenPanel?.Invoke(UIPanelTypes.Shop, 2);
             UISignals.Instance.OnSetNewLevelValue?.Invoke(levelValue);
+            UISignals.Instance.OnSetMoneyValue?.Invoke(ES3.KeyExists("Money") ? ES3.Load<int>("Money") : 0);
         }
 
         public void OnPlay()
@@ -64,7 +64,7 @@ namespace Runtime.Managers
         {
             CoreGameSignals.Instance.OnRestartLevel?.Invoke();
             CameraSignals.Instance.OnChangeCameraState?.Invoke(CameraStates.Initial);
-            // CoreGameSignals.Instance.OnReset?.Invoke();
+            CoreGameSignals.Instance.OnReset?.Invoke();
         }
 
         private void OnLevelFailed()
@@ -105,7 +105,7 @@ namespace Runtime.Managers
 
         private void OnReset()
         {
-            // CoreUISignals.Instance.OnCloseAllPanels?.Invoke();
+            UISignals.Instance.OnSetMoneyValue?.Invoke(ES3.Load<int>("Money"));
         }
     }
 }

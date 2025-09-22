@@ -21,6 +21,7 @@ namespace Runtime.Controllers.Player
         private readonly string _atm = "ATM";
         private readonly string _collectable = "Collectable";
         private readonly string _conveyor = "Conveyor";
+        private readonly string _collected = "Collected";
 
         #endregion
 
@@ -43,7 +44,7 @@ namespace Runtime.Controllers.Player
 
             if (other.CompareTag(_collectable))
             {
-                other.tag = "Collected";
+                other.tag = _collected;
                 StackSignals.Instance.OnInteractionCollectable?.Invoke(other.transform.parent.gameObject);
                 return;
             }

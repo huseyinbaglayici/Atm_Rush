@@ -38,10 +38,10 @@ namespace Runtime.Managers
             CoreGameSignals.Instance.OnMiniGameStart +=
                 () => ScoreSignals.Instance.OnSendFinalScore?.Invoke(_scoreCache);
             CoreGameSignals.Instance.OnReset += OnReset;
-            CoreGameSignals.Instance.OnLevelSuccessful += RefreshMoney;
+            CoreGameSignals.Instance.OnLevelSuccessful += IncreaseMoney;
             CoreGameSignals.Instance.OnLevelFailed += RefreshMoney;
-            CoreGameSignals.Instance.OnRestartLevel += OnRestartLevel;
             CoreGameSignals.Instance.OnNextLevel += OnNextLevel;
+            CoreGameSignals.Instance.OnRestartLevel += OnRestartLevel;
             UISignals.Instance.OnClickIncome += OnSetValueMultiplier;
         }
 
@@ -80,10 +80,9 @@ namespace Runtime.Managers
             CoreGameSignals.Instance.OnMiniGameStart -=
                 () => ScoreSignals.Instance.OnSendFinalScore?.Invoke(_scoreCache);
             CoreGameSignals.Instance.OnReset -= OnReset;
-            CoreGameSignals.Instance.OnLevelSuccessful -= RefreshMoney;
-            CoreGameSignals.Instance.OnLevelFailed -= RefreshMoney;
-            CoreGameSignals.Instance.OnRestartLevel -= OnRestartLevel;
-            CoreGameSignals.Instance.OnNextLevel -= OnNextLevel;
+            CoreGameSignals.Instance.OnLevelSuccessful -= IncreaseMoney;
+            CoreGameSignals.Instance.OnLevelFailed -= IncreaseMoney;
+            CoreGameSignals.Instance.OnRestartLevel -= RefreshMoney;
             UISignals.Instance.OnClickIncome -= OnSetValueMultiplier;
         }
 
@@ -96,7 +95,6 @@ namespace Runtime.Managers
         private void Start()
         {
             OnSetValueMultiplier();
-            RefreshMoney();
         }
 
 
@@ -106,21 +104,26 @@ namespace Runtime.Managers
             return ES3.KeyExists("Money") ? ES3.Load<int>("Money") : 0;
         }
 
-        private void RefreshMoney()
+        private void IncreaseMoney()
         {
             _money += (int)(_scoreCache * ScoreSignals.Instance.OnGetMultiplier());
-            _money = Mathf.Clamp(_money, 0, _money);
+            _money = Mathf.Max(0, _money);
             UISignals.Instance.OnSetMoneyValue?.Invoke(_money);
-        }
-
-        private void OnRestartLevel()
-        {
-            UISignals.Instance.OnSetMoneyValue?.Invoke(GetMoneyValue());
         }
 
         private void OnNextLevel()
         {
-            RefreshMoney();
+            UISignals.Instance.OnSetMoneyValue?.Invoke(_money);
+        }
+
+        private void RefreshMoney()
+        {
+            UISignals.Instance.OnSetMoneyValue?.Invoke(ES3.Load<int>("Money"));
+        }
+
+        private void OnRestartLevel()
+        {
+            CoreGameSignals.Instance.OnReset?.Invoke();
         }
 
         private void OnReset()

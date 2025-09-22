@@ -1,4 +1,3 @@
-using System;
 using Runtime.Signals;
 using TMPro;
 using UnityEngine;
@@ -27,11 +26,12 @@ namespace Runtime.Controllers.UI
         {
             SubscribeEvents();
         }
-
+        
         private void SubscribeEvents()
         {
             UISignals.Instance.OnSetIncomeLvlText += OnSetIncomeLvLText;
             UISignals.Instance.OnSetStackLvlText += OnSetStackLvLText;
+            UISignals.Instance.OnRefreshShopUI += SyncShopUi;
         }
 
         private void OnSetStackLvLText()
@@ -52,6 +52,7 @@ namespace Runtime.Controllers.UI
         {
             UISignals.Instance.OnSetIncomeLvlText -= OnSetIncomeLvLText;
             UISignals.Instance.OnSetStackLvlText -= OnSetStackLvLText;
+            UISignals.Instance.OnRefreshShopUI -= SyncShopUi;
         }
 
         private void OnDisable()
@@ -70,6 +71,7 @@ namespace Runtime.Controllers.UI
             OnSetStackLvLText();
             ChangesIncomeInteractable();
             ChangesStackInteractable();
+            Debug.LogWarning("syncShopUI activated in start");
         }
 
         private void ChangesIncomeInteractable()

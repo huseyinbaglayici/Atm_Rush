@@ -15,7 +15,8 @@ namespace Runtime.Commands.Feature
 
         internal void Execute(ref int newPriceTag, ref byte incomeLevel)
         {
-            int currentMoney = ScoreSignals.Instance.OnGetMoney?.Invoke() ?? 0;
+            int currentMoney = ScoreSignals.Instance.OnGetMoney?.Invoke()
+                               ?? (ES3.KeyExists("Money") ? ES3.Load<int>("Money") : 0);
 
             int cost = (int)(Mathf.Pow(2, Mathf.Clamp(incomeLevel, 0, 10)) * 100);
             newPriceTag = currentMoney - cost;
@@ -25,6 +26,8 @@ namespace Runtime.Commands.Feature
             ScoreSignals.Instance.OnSendMoney?.Invoke(newPriceTag);
             UISignals.Instance.OnSetMoneyValue?.Invoke(newPriceTag);
             _featureManager.SaveFeatureData();
+
+            UISignals.Instance.OnRefreshShopUI?.Invoke();
         }
     }
 }

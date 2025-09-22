@@ -6,25 +6,26 @@ namespace Runtime.Commands.Feature
 {
     public class OnClickStackCommand
     {
-        private FeatureManager _featureManager;
-        private byte _stackLevel;
-        private int _newPriceTag;
+        private readonly FeatureManager _featureManager;
 
-        public OnClickStackCommand(FeatureManager featureManager, ref int newPriceTag, ref byte stackLevel)
+        public OnClickStackCommand(FeatureManager featureManager)
         {
             _featureManager = featureManager;
-            _newPriceTag = newPriceTag;
-            _stackLevel = stackLevel;
         }
 
-        internal void Execute()
+        internal void Execute(ref int newPriceTag, ref byte stackLevel)
         {
-            _newPriceTag = (int)(CoreGameSignals.Instance.OnGetStackLevel() -
-                                 ((Mathf.Pow(2, Mathf.Clamp(_stackLevel, 0, 10)) * 100)));
-            _stackLevel += 1;
-            ScoreSignals.Instance.OnSendMoney?.Invoke((int)_newPriceTag);
-            UISignals.Instance.OnSetMoneyValue?.Invoke((int)_newPriceTag);
+            int currentMoney = ScoreSignals.Instance.OnGetMoney?.Invoke() ??
+                               (ES3.KeyExists("Money") ? ES3.Load<int>("Money") : 0);
+
+            int cost = (int)(Mathf.Pow(2, Mathf.Clamp(stackLevel, 0, 10)) * 100);
+            newPriceTag = currentMoney - cost;
+            stackLevel += 1;
+            ScoreSignals.Instance.OnSendMoney?.Invoke((int)newPriceTag);
+            UISignals.Instance.OnSetMoneyValue?.Invoke((int)newPriceTag);
             _featureManager.SaveFeatureData();
+
+            UISignals.Instance.OnRefreshShopUI?.Invoke();
         }
     }
 }

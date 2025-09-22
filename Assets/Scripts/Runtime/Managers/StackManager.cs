@@ -4,7 +4,6 @@ using Runtime.Commands.Stack;
 using Runtime.Data.UnityObject;
 using Runtime.Data.ValueObject;
 using Runtime.Signals;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Runtime.Managers
@@ -41,6 +40,7 @@ namespace Runtime.Managers
         private StackAnimatorCommand _stackAnimatorCommand;
         private StackInteractionWithConveyorCommand _stackInteractionWithConveyorCommand;
         private StackInitializerCommand _stackInitializerCommand;
+        private StackClearCommand _stackClearCommand;
 
         private readonly string _stackDataPath = "Data/CD_Stack";
 
@@ -64,6 +64,7 @@ namespace Runtime.Managers
             _stackInteractionWithConveyorCommand = new StackInteractionWithConveyorCommand(this, ref _collectableStack);
             StackTypeUpdaterCommand = new StackTypeUpdaterCommand(ref _collectableStack);
             _stackInitializerCommand = new StackInitializerCommand(this, ref money);
+            _stackClearCommand = new StackClearCommand(ref _collectableStack);
         }
 
         private StackData GetStackData()
@@ -145,6 +146,7 @@ namespace Runtime.Managers
 
         private void OnReset()
         {
+            _stackClearCommand.Execute();
             LastCheck = false;
             _collectableStack.Clear();
             _collectableStack.TrimExcess();
