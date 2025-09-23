@@ -146,10 +146,8 @@ namespace Runtime.Managers
 
         private void OnReset()
         {
-            _stackClearCommand.Execute();
             LastCheck = false;
-            _collectableStack.Clear();
-            _collectableStack.TrimExcess();
+            _stackClearCommand.Execute();
         }
     }
 }
