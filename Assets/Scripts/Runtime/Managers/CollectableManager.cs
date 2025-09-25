@@ -46,7 +46,8 @@ namespace Runtime.Managers
 
         internal void CollectableUpgrade(int value)
         {
-            if (_currentValue < 2) _currentValue++;
+            if (_currentValue == 2) return;
+            _currentValue++;
             meshController.UpgradeCollectableVisual(_currentValue);
             StackSignals.Instance.OnUpdateType?.Invoke();
         }

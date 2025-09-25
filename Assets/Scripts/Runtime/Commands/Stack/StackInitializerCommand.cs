@@ -9,7 +9,8 @@ namespace Runtime.Commands.Stack
     {
         private StackManager _stackManager;
         private GameObject _money;
-
+        
+        private readonly string _collected = "Collected";
         public StackInitializerCommand(StackManager stackManager, ref GameObject money)
         {
             _stackManager = stackManager;
@@ -22,6 +23,7 @@ namespace Runtime.Commands.Stack
             for (int i = 1; i < stackLevel; i++)
             {
                 GameObject obj = Object.Instantiate(_money);
+                obj.transform.GetChild(1).tag = _collected;
                 _stackManager.AdderOnStackCommand.Execute(obj);
             }
 
