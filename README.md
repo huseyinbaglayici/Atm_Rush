@@ -5,6 +5,11 @@ This project focuses on clean architecture, reusable systems, and design pattern
 
 ---
 
+## Gameplay Video
+
+https://github.com/user-attachments/assets/97161b35-4c8a-484d-b98b-1e342baf19a9
+
+
 ## 📌 Features  
 
 - Scalable architecture following **SOLID principles**  
